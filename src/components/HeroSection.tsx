@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Play } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { DemoRequestForm } from "./DemoRequestForm";
 
 export function HeroSection() {
+  const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
+
   return (
     <section className="relative overflow-hidden">
       {/* Gradient Background */}
@@ -40,15 +44,9 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button 
                 className="bg-[#0052FF] hover:bg-[#0046DD] text-white rounded-lg px-8 py-6 h-auto"
-                asChild
+                onClick={() => setIsDemoFormOpen(true)}
               >
-                <a 
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@apexneural.com&su=PRISM Demo Request&body=Hi,%0D%0A%0D%0AI would like to request a demo of PRISM.%0D%0A%0D%0AThank you!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Request Demo
-                </a>
+                Request Demo
               </Button>
               
               <Button 
@@ -129,6 +127,7 @@ export function HeroSection() {
           }
         }
       `}</style>
+      <DemoRequestForm open={isDemoFormOpen} onOpenChange={setIsDemoFormOpen} />
     </section>
   );
 }
